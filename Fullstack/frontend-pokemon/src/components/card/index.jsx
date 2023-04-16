@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { ContainerBtnsInformation, BtnATk, BtnDef, BtnSta } from "./styles";
 
-export const CardPokemon = ({ name, atk, def, sta, img }) => {
+export const CardPokemon = ({ name, atk, def, sta, img, onClick }) => {
   return (
     <Card sx={{ maxWidth: 325 }}>
       <CardMedia
@@ -27,7 +27,14 @@ export const CardPokemon = ({ name, atk, def, sta, img }) => {
         </ContainerBtnsInformation>
       </CardContent>
       <CardActions>
-        <Button size="small">Ver mais</Button>
+        <Button
+          size="small"
+          onClick={() => {
+            onClick();
+          }}
+        >
+          Ver mais
+        </Button>
       </CardActions>
     </Card>
   );

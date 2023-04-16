@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryColumn } from "typeorm";
+import { Entity, Column, PrimaryColumn, BeforeInsert } from "typeorm";
 import { v4 as uuid } from "uuid";
 
 @Entity()
@@ -9,17 +9,17 @@ export class Pokemon {
   @Column()
   name: string;
 
-  @Column({ unique: true })
-  pokedexNumber: number;
+  @Column()
+  pokedex_number: number;
+
+  @Column()
+  img_name: string;
 
   @Column()
   generation: number;
 
   @Column()
   evolved: boolean;
-
-  @Column()
-  familyID: number;
 
   @Column()
   family_id: number;
@@ -85,16 +85,14 @@ export class Pokemon {
   future_evolve: boolean;
 
   @Column()
-  "100% CP @ 40": number;
+  cp40: number;
 
   @Column()
-  "100% CP @ 39": number;
+  cp39: number;
 
   constructor() {
     if (!this.id) {
       this.id = uuid();
     }
-    this.pokedexNumber = 0;
-    this.pokedexNumber++;
   }
 }

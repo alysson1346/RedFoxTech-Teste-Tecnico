@@ -7,6 +7,7 @@ import reportWebVitals from "./reportWebVitals";
 import { ThemeProvider } from "styled-components";
 import CssBaseline from "@mui/material/CssBaseline";
 import theme from "./theme";
+import Providers from "./providers";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -14,7 +15,9 @@ root.render(
     <BrowserRouter>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <App />
+        <Providers>
+          <App />
+        </Providers>
       </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>

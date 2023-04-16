@@ -1,15 +1,18 @@
 import { Container, Image } from "./styles";
 import { Button } from "../button";
-import { FaUser } from "react-icons/fa";
+import { FaUser, FaDoorOpen } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
+import { useAuth } from "../../providers/authenticad";
 
 export const Header = () => {
+  const { isAuthenticated, logout } = useAuth();
   const history = useHistory();
+
   const Redirect = (isLogged) => {
     if (isLogged) {
       localStorage.clear();
-      history.push("/");
-    } else {
+      logout();
+    } else if (isLogged === false) {
       history.push("/login");
     }
   };
@@ -19,15 +22,25 @@ export const Header = () => {
         src={process.env.PUBLIC_URL + "/images/pokemon-logo.png"}
         alt="Logo Pokemon"
       />
-
-      <Button
-        onClick={() => {
-          Redirect(false);
-        }}
-      >
-        <FaUser />
-        Login
-      </Button>
+      {isAuthenticated ? (
+        <Button
+          onClick={() => {
+            Redirect(isAuthenticated);
+          }}
+        >
+          <FaDoorOpen />
+          Logout
+        </Button>
+      ) : (
+        <Button
+          onClick={() => {
+            Redirect(isAuthenticated);
+          }}
+        >
+          <FaUser />
+          Login
+        </Button>
+      )}
     </Container>
   );
 };

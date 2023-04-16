@@ -16,6 +16,9 @@ export class User {
   password: string;
 
   @Column()
+  is_admin: boolean;
+
+  @Column()
   created_at: Date;
 
   constructor() {
